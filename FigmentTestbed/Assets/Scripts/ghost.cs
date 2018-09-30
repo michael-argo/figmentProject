@@ -5,8 +5,11 @@ using UnityEngine;
 public class ghost : MonoBehaviour {
 
     public bool chasePlayer;
-    public bool isChasing;
+    private bool isChasing;
     public bool isAlive;
+    public float speed = 4.0f;
+    public GameObject playerObject;
+    public PlayerCharacter player;
     //startpoint of path
     //endpoint of path
 
@@ -17,18 +20,34 @@ public class ghost : MonoBehaviour {
 
         
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "player")
+        {
+            player.loseLife();
+        }
+        Destroy(this.gameObject);
+    }
+    // Update is called once per frame
+    void Update () {
+        Vector3 vectorToTarget = playerObject.transform.position - transform.position;
+        float distanceToTarget = vectorToTarget.magnitude;
+
+        Vector3 desiredDirection = new Vector3();
+        desiredDirection = vectorToTarget;
         //this block defines the chasing ghost actions
         if (chasePlayer)
         {
-
-            //if chasePlayer && playerDist < x units, set is chasing to true
+            isChasing = (distanceToTarget < 20.0f);
 
             if (isChasing)
+            {//go straight to player
+                desiredDirection.Normalize();
+                transform.position += desiredDirection * speed * Time.deltaTime;
+            } else
             {
-                //go straight to player and avoid obstacles
+                desiredDirection = Vector3.zero;
+                //the player is too far, do nothing
             }
             
 

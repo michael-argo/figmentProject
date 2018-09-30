@@ -15,11 +15,12 @@ public class PlayerCharacter : MonoBehaviour {
 		
 	}
 	
-    void loseLife()//this will be called by the ghost actor
+    public void loseLife()//this will be called by the ghost actor
     {
         lives--;
         if(lives <= 0)
         {
+            Destroy(this.gameObject);
             //destroy actor
         }
     }
