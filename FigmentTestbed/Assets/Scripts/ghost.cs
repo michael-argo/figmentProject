@@ -10,6 +10,7 @@ public class ghost : MonoBehaviour {
     public float speed = 4.0f;
     public GameObject playerObject;
     public PlayerCharacter player;
+    public float chaseDistance = 20.0f; //this is just a test value, adjust as needed in prefab
     //startpoint of path
     //endpoint of path
 
@@ -22,7 +23,7 @@ public class ghost : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "player")
+        if(collision.gameObject.tag == "player")//lowercase tags
         {
             player.loseLife();
         }
@@ -38,7 +39,7 @@ public class ghost : MonoBehaviour {
         //this block defines the chasing ghost actions
         if (chasePlayer)
         {
-            isChasing = (distanceToTarget < 20.0f);
+            isChasing = (distanceToTarget < chaseDistance);
 
             if (isChasing)
             {//go straight to player
@@ -58,8 +59,7 @@ public class ghost : MonoBehaviour {
         {
             //follow predefined path
         }
-
-        //if collides with player, call player.loselife and destroy actor
+        
         //if collides with light mesh destroy actor and play sound
 
 

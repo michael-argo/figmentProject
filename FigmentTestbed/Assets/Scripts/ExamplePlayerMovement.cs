@@ -25,6 +25,7 @@ public class ExamplePlayerMovement : MonoBehaviour {
 
         if (FigmentInput.GetButton(FigmentInput.FigmentButton.ActionButton))
         {
+            //turn the light on with this button
             transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
         }
     }

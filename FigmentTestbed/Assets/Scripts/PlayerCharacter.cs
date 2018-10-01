@@ -8,15 +8,23 @@ public class PlayerCharacter : MonoBehaviour {
     public int lives;
     public bool lightOn;
     public bool lightBar;
-    public bool moving; 
+    public bool moving;
+    public AudioClip damagedSound; //this is the sound that plays when the player is hit by a ghost
+    private AudioSource source;
 
-	void Start () {
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
+    void Start () {
         lives = 3; 
 		
 	}
 	
     public void loseLife()//this will be called by the ghost actor
     {
+        source.PlayOneShot(damagedSound);
         lives--;
         if(lives <= 0)
         {
