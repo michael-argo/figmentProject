@@ -12,6 +12,9 @@ public class ghost : MonoBehaviour {
     public PlayerCharacter player;
     public float chaseDistance = 20.0f; //this is just a test value, adjust as needed in prefab
     //startpoint of path
+    private int cur;
+    public Transform[] target;//targets to move between 
+
     //endpoint of path
 
 
@@ -26,8 +29,13 @@ public class ghost : MonoBehaviour {
         if(collision.gameObject.tag == "player")//lowercase tags
         {
             player.loseLife();
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        if(collision.gameObject.tag == "flashlight")
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
     // Update is called once per frame
     void Update () {
@@ -45,6 +53,7 @@ public class ghost : MonoBehaviour {
             {//go straight to player
                 desiredDirection.Normalize();
                 transform.position += desiredDirection * speed * Time.deltaTime;
+
             } else
             {
                 desiredDirection = Vector3.zero;
@@ -57,7 +66,16 @@ public class ghost : MonoBehaviour {
         }
         else
         {
-            //follow predefined path
+            if (transform.position != target[cur].position)
+            {
+                Vector3 pos = Vector3.MoveTowards(transform.position, target[cur].position, speed * Time.deltaTime);
+                GetComponent<Rigidbody>().MovePosition(pos);
+
+            }
+            else {
+                cur = (cur + 1) % target.Length;
+            }
+            //move between gameobject point1 and gameobject point2
         }
         
         //if collides with light mesh destroy actor and play sound
