@@ -114,3 +114,5 @@ MonoBehaviour:
   playerObject: {fileID: 1731523848467674, guid: fda7303f880e1cb40a568fffcc8d30e9,
     type: 2}
   player: {fileID: 0}
+  chaseDistance: 20
+  target: []
