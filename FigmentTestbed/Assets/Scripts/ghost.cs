@@ -14,7 +14,8 @@ public class ghost : MonoBehaviour {
     //startpoint of path
     private int cur;
     public Transform[] target;//targets to move between 
-
+    public AudioClip destroyedSound;
+    private AudioSource source;
     //endpoint of path
 
 
@@ -24,15 +25,19 @@ public class ghost : MonoBehaviour {
 
         
 	}
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "player")//lowercase tags
+        if(collision.gameObject.tag == "player" || collision.gameObject.tag == "flashlight")//lowercase tags
         {
-            player.loseLife();
-            Destroy(this.gameObject);
-        }
-        if(collision.gameObject.tag == "flashlight")
-        {
+            if (collision.gameObject.tag == "player")
+            {
+                player.loselife();
+            }
+            source.PlayOneShot(destroyedSound);
             Destroy(this.gameObject);
         }
         
