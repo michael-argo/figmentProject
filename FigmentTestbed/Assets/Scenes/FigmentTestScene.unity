@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b5a79ef4b48f7cd40914f9f71fd6c69c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -4857,6 +4857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2049061152}
   - component: {fileID: 2049061153}
+  - component: {fileID: 2049061154}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -4914,6 +4915,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2049061154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2049061151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4003b29e9a1d784429b6dfccbc2d29f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightTime: 0
+  lightCooldown: 0
 --- !u!1 &2054765976
 GameObject:
   m_ObjectHideFlags: 0

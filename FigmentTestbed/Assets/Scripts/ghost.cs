@@ -14,15 +14,19 @@ public class ghost : MonoBehaviour {
     //startpoint of path
     private int cur;
     public Transform[] target;//targets to move between 
-    public AudioClip destroyedSound;
+    public AudioClip ghostSound;
+    public AudioClip ghostDamagedSound;
     private AudioSource source;
     //endpoint of path
+    public float soundInterval;
+    private float soundTimer;
 
 
 	// Use this for initialization
 	void Start () {
         isAlive = true;
-
+        soundInterval = Random.Range(7, 24);//will play ghost noise every x seconds
+        soundTimer = soundInterval;
         
 	}
     private void Awake()
@@ -35,9 +39,9 @@ public class ghost : MonoBehaviour {
         {
             if (collision.gameObject.tag == "player")
             {
-                player.loselife();
+                player.loseLife();
             }
-            source.PlayOneShot(destroyedSound);
+            
             Destroy(this.gameObject);
         }
         
@@ -49,6 +53,17 @@ public class ghost : MonoBehaviour {
 
         Vector3 desiredDirection = new Vector3();
         desiredDirection = vectorToTarget;
+
+        if (soundTimer <= 0)
+        {
+            soundTimer = soundInterval;
+            source.PlayOneShot(ghostSound);
+
+        }
+        else {
+            soundTimer -= Time.deltaTime;
+        }
+
         //this block defines the chasing ghost actions
         if (chasePlayer)
         {

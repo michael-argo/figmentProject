@@ -16,8 +16,8 @@
 		Pass
 		{
 			Blend SrcAlpha OneMinusSrcAlpha
-			ZWrite Off
-			ZTest Off
+			ZWrite On
+			ZTest On
 
 			CGPROGRAM
 			#pragma vertex vert
