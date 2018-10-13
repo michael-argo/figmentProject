@@ -8,6 +8,7 @@ public class lightToggle : MonoBehaviour {
     private float lightTimer;
     public float lightCooldown;
     private float lightCooldownTimer;
+    public Material lightBarMat;
 	// Use this for initialization
 	void Start () {
         myLight = GetComponent<Light>();
@@ -19,7 +20,9 @@ public class lightToggle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        float lightUI = lightTimer / lightTime;
         lightTimer -= Time.deltaTime;
+        lightBarMat.SetFloat("_Progress", lightUI);
         if (lightTimer <= 0)
         {
             myLight.enabled = false;
