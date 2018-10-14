@@ -10,6 +10,9 @@ public class PlayerCharacter : MonoBehaviour {
     public bool lightBar;
     public bool moving;
     public AudioClip damagedSound; //this is the sound that plays when the player is hit by a ghost
+    public GameObject heartA;
+    public GameObject heartB;
+    public GameObject heartC;
     private AudioSource source;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour {
     {
         source.PlayOneShot(damagedSound);
         lives--;
+        UpdateHud();
         if(lives <= 0)
         {
             Destroy(this.gameObject);
@@ -33,6 +37,23 @@ public class PlayerCharacter : MonoBehaviour {
         }
     }
 
+    void UpdateHud()
+    {
+        switch (lives)
+        {
+            case 0:
+                heartA.SetActive(false);
+                break;
+            case 1:
+                heartB.SetActive(false);
+                break;
+            case 2:
+                heartC.SetActive(false);
+                break;
+            case 3:
+                break;
+        }
+    }
 
 	// Update is called once per frame
 	void Update () {

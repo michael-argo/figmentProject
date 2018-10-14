@@ -133,6 +133,6 @@ MonoBehaviour:
   chaseDistance: 20
   target: []
   ghostSound: {fileID: 0}
-  ghostDamagedSound: {fileID: 0}
+  ghostDamagedSound: {fileID: 8300000, guid: be99cacda12b95c40b2157aa66dc47cb, type: 3}
   soundInterval: 0
   deviationToTarget: 0

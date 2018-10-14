@@ -6,7 +6,7 @@
 		_Tint ("Tint", Color) = (1, 1, 1, 1)
 		_DepletionTint ("DepletionTint", Color) = (1, 1, 1, 1)
 		_BackgroundTint ("Background Tint", Color) = (1, 1, 1, 1)
-		_BatteryCharge ("Battery Charge", Range(0, 1)) = 1
+		_Progress ("Battery Charge", Range(0, 1)) = 1
 	}
 	SubShader
 	{
@@ -42,7 +42,7 @@
 			float4 _Tint;
 			float4 _DepletionTint;
 			float4 _BackgroundTint;
-			float _BatteryCharge;
+			float _Progress;
 			
 			v2f vert (appdata v)
 			{
@@ -56,7 +56,7 @@
 			{
 				// sample the texture
 				fixed4 smp = tex2D(_MainTex, i.uv);
-				float pos = ((.5 + _BatteryCharge*.5*smp.a) - smp.r);
+				float pos = ((.5 + _Progress*.5*smp.a) - smp.r);
 				fixed4 col = _Tint;
 				if(pos < 0)
 				col = _DepletionTint;
