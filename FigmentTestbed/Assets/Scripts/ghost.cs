@@ -21,21 +21,24 @@ public class ghost : MonoBehaviour {
     public float soundInterval;
     private float soundTimer;
 
+    //this determines how close to the targets the ghost will get on the path
+    public float deviationToTarget; 
 
 	// Use this for initialization
 	void Start () {
         isAlive = true;
         soundInterval = Random.Range(7, 24);//will play ghost noise every x seconds
         soundTimer = soundInterval;
-        
+        deviationToTarget = 1;
 	}
     private void Awake()
     {
+        Debug.Log("awake");
         source = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "player" || collision.gameObject.tag == "flashlight")//lowercase tags
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "flashlight")//lowercase tags
         {
             if (collision.gameObject.tag == "player")
             {
@@ -86,7 +89,7 @@ public class ghost : MonoBehaviour {
         }
         else
         {
-            if (transform.position != target[cur].position)
+            if (Vector3.Distance(transform.position, target[cur].position) > deviationToTarget)
             {
                 Vector3 pos = Vector3.MoveTowards(transform.position, target[cur].position, speed * Time.deltaTime);
                 GetComponent<Rigidbody>().MovePosition(pos);
