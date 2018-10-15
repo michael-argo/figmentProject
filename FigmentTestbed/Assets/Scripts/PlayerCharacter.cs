@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerCharacter : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class PlayerCharacter : MonoBehaviour {
     public GameObject heartA;
     public GameObject heartB;
     public GameObject heartC;
+    public AudioMixer mixer;
     private AudioSource source;
 
     private void Awake()
@@ -46,9 +48,11 @@ public class PlayerCharacter : MonoBehaviour {
                 break;
             case 1:
                 heartB.SetActive(false);
+                mixer.SetFloat("MyExposedParam 2", 0f);
                 break;
             case 2:
                 heartC.SetActive(false);
+                mixer.SetFloat("MyExposedParam 1", 0f);
                 break;
             case 3:
                 break;

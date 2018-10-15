@@ -22,7 +22,10 @@ public class ghost : MonoBehaviour {
     private float soundTimer;
 
     //this determines how close to the targets the ghost will get on the path
-    public float deviationToTarget; 
+    public float deviationToTarget;
+
+    //reference to spot light on character
+    private Light spot;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +33,7 @@ public class ghost : MonoBehaviour {
         soundInterval = Random.Range(7, 24);//will play ghost noise every x seconds
         soundTimer = soundInterval;
         deviationToTarget = 1;
+        spot = GameObject.Find("Spot Light").GetComponent<Light>();
 	}
     private void Awake()
     {
@@ -45,12 +49,21 @@ public class ghost : MonoBehaviour {
                 player.loseLife();
             }
             
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
         
     }
+
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.tag == "flashlight" && spot.enabled)
+            Destroy(this.gameObject);
+    }
+
     // Update is called once per frame
     void Update () {
+        if (playerObject == null)
+            return;
         Vector3 vectorToTarget = playerObject.transform.position - transform.position;
         float distanceToTarget = vectorToTarget.magnitude;
 
@@ -102,7 +115,6 @@ public class ghost : MonoBehaviour {
         }
         
         //if collides with light mesh destroy actor and play sound
-
 
     }
 }
