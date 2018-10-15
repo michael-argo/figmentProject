@@ -40,7 +40,7 @@ public class ghost : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "flashlight")//lowercase tags
         {
-            if (collision.gameObject.tag == "player")
+            if (collision.gameObject.tag == "Player")
             {
                 player.loseLife();
             }

@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\ghost.cs" />
      <Compile Include="Assets\Scripts\lightToggle.cs" />
      <Compile Include="Assets\Scripts\PlayerCharacter.cs" />
+     <None Include="Assets\Art\Textures\Wood texture floor_01\readme.txt" />
      <None Include="Assets\Art\Shaders\FlashlightHud.shader" />
      <None Include="Assets\FigmentPreview\FigmentScreenShader.shader" />
  <Reference Include="UnityEditor.StandardEvents">
